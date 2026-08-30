@@ -2,9 +2,18 @@ spring:
   application:
     name: service-registry
 
-  config:
-    import: "configserver:"
+server:
+  port: 9001
 
-  cloud:
-    config:
-      uri: http://localhost:9000
+eureka:
+  instance:
+    hostname: ${EUREKA_HOSTNAME:localhost}
+    prefer-ip-address: false
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://vm-node-a.platform:9001/eureka/,http://vm-node-b.platform:9001/eureka/,http://vm-node-c.platform:9001/eureka/
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
