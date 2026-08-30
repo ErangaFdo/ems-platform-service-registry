@@ -1,13 +1,16 @@
 spring:
   application:
     name: service-registry
+  cloud:
+    config:
+      enabled: false
 
 server:
   port: 9001
 
 eureka:
   instance:
-    hostname: ${EUREKA_HOSTNAME:localhost}
+    hostname: ${EUREKA_HOSTNAME:vm-node-b.platform}
     prefer-ip-address: false
   client:
     register-with-eureka: true
